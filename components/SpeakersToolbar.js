@@ -1,22 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
-const SpeakersToolbar = () => {
-  const [local, setLocal] = useState({
-    showSessions: true,
-    theme: "light",
-  });
-
-  const { showSessions, theme } = local;
-
+const SpeakersToolbar = ({ showSessions, theme, setParentState }) => {
   const handleSessionChange = (e) => {
-    setLocal((prevState) => ({
+    setParentState((prevState) => ({
       ...prevState,
       showSessions: e.target.checked,
     }));
   };
 
   const handleThemeChange = (e) => {
-    setLocal((prevState) => ({
+    setParentState((prevState) => ({
       ...prevState,
       theme: e.target.value,
     }));

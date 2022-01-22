@@ -1,6 +1,7 @@
 import React from "react";
 
-const Header = () => {
+const Header = ({ theme }) => {
+  const textsColor = theme === "light" ? "" : "text-info";
   return (
     <div className="padT4 padB4">
       <div className="container mobile-container">
@@ -8,10 +9,10 @@ const Header = () => {
           <div>
             <img alt="SVCC Home Page" src="/images/SVCCLogo.png" />
           </div>
-          <div className="light">
+          <div className={textsColor}>
             <h4 className="header-tittle">Bangkok Code Camp</h4>
           </div>
-          <div className="text-dark">
+          <div className={textsColor}>
             Hello Mr. Chicken &nbsp;&nbsp;
             <span>
               <a href="#"> sign-out</a>
