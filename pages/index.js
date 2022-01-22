@@ -1,11 +1,11 @@
 import React from "react";
-import Speakers from "../components/Speakers";
+import App from "../components/App";
 
 const IndexPage = () => {
   return (
     <div>
       <h1>HERE</h1>
-      <Speakers />{" "}
+      <App />
     </div>
   );
 };

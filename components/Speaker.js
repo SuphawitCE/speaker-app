@@ -61,18 +61,18 @@ const SpeakerDemographics = ({
   );
 };
 
-const Speaker = ({ speaker }) => {
+const Speaker = ({ speaker, showSessions }) => {
   const { id, first, last, sessions } = speaker;
   return (
     <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-sm-12 col-xs-12">
       <div className="card card-height p-4 mt-4">
         {/* picture */}
         <SpeakerImage id={id} first={first} last={last} />
-        {/* speaker */}
+        {/* speaker info */}
         <SpeakerDemographics {...speaker} />
         {/* session */}
       </div>
-      <Sessions sessions={sessions} />
+      {showSessions === true ? <Sessions sessions={sessions} /> : null}
     </div>
   );
 };
