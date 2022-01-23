@@ -1,15 +1,10 @@
 import React from "react";
-import { data } from "../SpeakerData";
-import Speaker from "../components/Speaker";
+import App from "../components/App";
 
 const IndexPage = () => {
   return (
-    <div className="container speakers-list">
-      <div className="row">
-        {data.map((speaker) => {
-          return <Speaker key={speaker.id} speaker={speaker} />;
-        })}
-      </div>
+    <div>
+      <App />
     </div>
   );
 };
