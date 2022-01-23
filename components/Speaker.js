@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Session = ({ title, room }) => {
   return (
@@ -30,7 +30,18 @@ const SpeakerImage = ({ id, first, last }) => {
 };
 
 const SpeakerFavorite = ({ favorite, onFavoriteToggle }) => {
+  const [local, setLocal] = useState({
+    inTransition: false,
+  });
+
+  const { inTransition } = local;
+
   const doneCallback = () => {
+    setLocal((prevState) => ({
+      ...prevState,
+      inTransition: false,
+    }));
+
     console.log(
       `In SpeakerFavorite:doneCallback: ${new Date().getMilliseconds()}`
     );
@@ -38,11 +49,20 @@ const SpeakerFavorite = ({ favorite, onFavoriteToggle }) => {
 
   return (
     <div className="action padB1">
-      <span onClick={() => onFavoriteToggle(doneCallback)}>
+      <span
+        onClick={() => {
+          setLocal((prevState) => ({
+            ...prevState,
+            inTransition: true,
+          }));
+          return onFavoriteToggle(doneCallback);
+        }}
+      >
         <i
           className={favorite ? "fa fa-star orange" : "fa fa-star-o orange"}
         ></i>{" "}
         Favorite{" "}
+        {inTransition ? <span className="fas fa-circle-notch fa-spin" /> : null}
       </span>
     </div>
   );
