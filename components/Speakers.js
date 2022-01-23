@@ -2,12 +2,7 @@ import React from "react";
 import SpeakersList from "./SpeakersList";
 import SpeakersToolbar from "./SpeakersToolbar";
 
-const Speakers = ({
-  // data,
-  theme,
-  showSessions,
-  setParentState,
-}) => {
+const Speakers = ({ theme, showSessions, setParentState }) => {
   return (
     <>
       <SpeakersToolbar
@@ -15,10 +10,7 @@ const Speakers = ({
         setParentState={setParentState}
         showSessions={showSessions}
       />
-      <SpeakersList
-        // data={data}
-        showSessions={showSessions}
-      />
+      <SpeakersList showSessions={showSessions} />
     </>
   );
 };

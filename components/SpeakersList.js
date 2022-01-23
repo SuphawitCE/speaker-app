@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import Speaker from "./Speaker";
 import { data } from "../SpeakerData";
 
-const SpeakersList = ({
-  // data,
-  showSessions,
-}) => {
-  // const [speakersData, setSpeakersData] = useState(data);
-
+const SpeakersList = ({ showSessions }) => {
   const [local, setLocal] = useState({
     speakersData: data,
   });
@@ -26,7 +21,6 @@ const SpeakersList = ({
       rec.id === id ? speakerRecUpdated : rec
     );
 
-    // setSpeakersData(speakersDataNew);
     setLocal((prevState) => ({
       ...prevState,
       speakersData: speakersDataNew,
