@@ -1,13 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Speaker from "./Speaker";
 import { data } from "../SpeakerData";
 
 const SpeakersList = ({ showSessions }) => {
   const [local, setLocal] = useState({
-    speakersData: data,
+    // speakersData: data,
+    speakersData: [],
   });
 
   const { speakersData } = local;
+
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  useEffect(() => {
+    const callDelay = async () => {
+      await delay(2000);
+
+      setLocal((prevState) => ({
+        ...prevState,
+        speakersData: data,
+      }));
+    };
+
+    callDelay();
+  }, []);
 
   const onFavoriteToggle = (id) => {
     const speakersRecPrevious = speakersData.find((rec) => rec.id === id);
