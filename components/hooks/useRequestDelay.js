@@ -42,24 +42,29 @@ const useRequestDelay = (delayTime = 1000, initialData = []) => {
   }, []);
 
   const updateRecord = (recordUpdated, doneCallback) => {
+    const originalRecords = [...data];
     const newRecords = data.map((rec) =>
       rec.id === recordUpdated.id ? recordUpdated : rec
     );
 
     const delayFunction = async () => {
       try {
-        await delay(delayTime);
-
-        if (doneCallback) {
-          doneCallback();
-        }
-
         setLocal((prevState) => ({
           ...prevState,
           data: newRecords,
         }));
+
+        await delay(delayTime);
+
+        if (doneCallback) doneCallback();
       } catch (e) {
         console.log("error thrown inside delayFunction", e);
+        if (doneCallback) doneCallback();
+
+        setLocal((prevState) => ({
+          ...prevState,
+          data: originalRecords,
+        }));
       }
     };
 
