@@ -1,63 +1,67 @@
 import React, { useEffect, useState } from "react";
 import Speaker from "./Speaker";
-import { data } from "../SpeakerData";
+// import { data } from "../SpeakerData";
 import ReactPlaceholder from "react-placeholder";
+import useRequestSpeakers from "./hooks/useRequestSpeakers";
 
 const SpeakersList = ({ showSessions }) => {
-  const [local, setLocal] = useState({
-    speakersData: [],
-    isLoading: true,
-    hasErrored: false,
-    error: "",
-  });
+  const { speakersData, isLoading, hasErrored, error, onFavoriteToggle } =
+    useRequestSpeakers(1000);
 
-  const { speakersData, isLoading, hasErrored, error } = local;
+  // const [local, setLocal] = useState({
+  //   speakersData: [],
+  //   isLoading: true,
+  //   hasErrored: false,
+  //   error: "",
+  // });
 
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  // const { speakersData, isLoading, hasErrored, error } = local;
 
-  useEffect(() => {
-    const callDelay = async () => {
-      try {
-        await delay(1000);
+  // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-        // if want to test error fetching data uncomment throw
-        // throw "Error happen in useEffect block";
+  // useEffect(() => {
+  //   const callDelay = async () => {
+  //     try {
+  //       await delay(1000);
 
-        setLocal((prevState) => ({
-          ...prevState,
-          isLoading: false,
-          speakersData: data,
-        }));
-      } catch (e) {
-        setLocal((prevState) => ({
-          ...prevState,
-          isLoading: false,
-          hasErrored: true,
-          error: e,
-        }));
-      }
-    };
+  //       // if want to test error fetching data uncomment throw
+  //       // throw "Error happen in useEffect block";
 
-    callDelay();
-  }, []);
+  //       setLocal((prevState) => ({
+  //         ...prevState,
+  //         isLoading: false,
+  //         speakersData: data,
+  //       }));
+  //     } catch (e) {
+  //       setLocal((prevState) => ({
+  //         ...prevState,
+  //         isLoading: false,
+  //         hasErrored: true,
+  //         error: e,
+  //       }));
+  //     }
+  //   };
 
-  const onFavoriteToggle = (id) => {
-    const speakersRecPrevious = speakersData.find((rec) => rec.id === id);
+  //   callDelay();
+  // }, []);
 
-    const speakerRecUpdated = {
-      ...speakersRecPrevious,
-      favorite: !speakersRecPrevious.favorite,
-    };
+  // const onFavoriteToggle = (id) => {
+  //   const speakersRecPrevious = speakersData.find((rec) => rec.id === id);
 
-    const speakersDataNew = speakersData.map((rec) =>
-      rec.id === id ? speakerRecUpdated : rec
-    );
+  //   const speakerRecUpdated = {
+  //     ...speakersRecPrevious,
+  //     favorite: !speakersRecPrevious.favorite,
+  //   };
 
-    setLocal((prevState) => ({
-      ...prevState,
-      speakersData: speakersDataNew,
-    }));
-  };
+  //   const speakersDataNew = speakersData.map((rec) =>
+  //     rec.id === id ? speakerRecUpdated : rec
+  //   );
+
+  //   setLocal((prevState) => ({
+  //     ...prevState,
+  //     speakersData: speakersDataNew,
+  //   }));
+  // };
 
   if (hasErrored) {
     return (
@@ -68,14 +72,6 @@ const SpeakersList = ({ showSessions }) => {
       </div>
     );
   }
-
-  // if (isLoading) {
-  //   return (
-  //     <div>
-  //       <h2>Loading... isLoading-State: {JSON.stringify(isLoading)}</h2>
-  //     </div>
-  //   );
-  // }
 
   return (
     <div className="container speakers-list">
