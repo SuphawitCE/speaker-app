@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { data } from "../../SpeakerData";
 
+export const REQUEST_STATUS = {
+  LOADING: "loading",
+  SUCCESS: "success",
+  FAILURE: "failure",
+};
+
 const useRequestSpeakers = (delayTime = 1000) => {
   const [local, setLocal] = useState({
     speakersData: [],
-    isLoading: true,
-    hasErrored: false,
+    // isLoading: true,
+    // hasErrored: false,
     error: "",
+    requestStatus: REQUEST_STATUS.LOADING,
   });
 
-  const { speakersData, isLoading, hasErrored, error } = local;
+  const {
+    speakersData,
+    // isLoading,
+    // hasErrored,
+    requestStatus,
+    error,
+  } = local;
 
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -23,14 +36,16 @@ const useRequestSpeakers = (delayTime = 1000) => {
 
         setLocal((prevState) => ({
           ...prevState,
-          isLoading: false,
+          // isLoading: false,
+          requestStatus: REQUEST_STATUS.SUCCESS,
           speakersData: data,
         }));
       } catch (e) {
         setLocal((prevState) => ({
           ...prevState,
-          isLoading: false,
-          hasErrored: true,
+          // isLoading: false,
+          // hasErrored: true,
+          requestStatus: REQUEST_STATUS.FAILURE,
           error: e,
         }));
       }
@@ -59,8 +74,9 @@ const useRequestSpeakers = (delayTime = 1000) => {
 
   return {
     speakersData,
-    isLoading,
-    hasErrored,
+    // isLoading,
+    // hasErrored,
+    requestStatus,
     error,
     onFavoriteToggle,
   };
