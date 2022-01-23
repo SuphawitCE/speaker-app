@@ -41,7 +41,7 @@ const useRequestDelay = (delayTime = 1000, initialData = []) => {
     callDelay();
   }, []);
 
-  const updateRecord = (recordUpdated) => {
+  const updateRecord = (recordUpdated, doneCallback) => {
     const newRecords = data.map((rec) =>
       rec.id === recordUpdated.id ? recordUpdated : rec
     );
@@ -49,6 +49,11 @@ const useRequestDelay = (delayTime = 1000, initialData = []) => {
     const delayFunction = async () => {
       try {
         await delay(delayTime);
+
+        if (doneCallback) {
+          doneCallback();
+        }
+
         setLocal((prevState) => ({
           ...prevState,
           data: newRecords,
