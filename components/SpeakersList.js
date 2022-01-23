@@ -7,13 +7,10 @@ import { data } from "../SpeakerData";
 const SpeakersList = ({ showSessions }) => {
   const {
     data: speakersData,
-    // isLoading,
-    // hasErrored,
     requestStatus,
     error,
-    // onFavoriteToggle,
     updateRecord,
-  } = useRequestDelay(500, data);
+  } = useRequestDelay(1500, data);
 
   if (requestStatus === REQUEST_STATUS.FAILURE) {
     return (
@@ -41,7 +38,6 @@ const SpeakersList = ({ showSessions }) => {
                 speaker={speaker}
                 showSessions={showSessions}
                 onFavoriteToggle={() => {
-                  // onFavoriteToggle(speaker.id);
                   updateRecord({
                     ...speaker,
                     favorite: !speaker.favorite,
