@@ -1,26 +1,37 @@
-import React, { createContext, useState } from "react";
+import React, { useContext } from "react";
+import { ThemeContext, ThemeProvider } from "./contexts/ThemeContext";
 
-export const ThemeContext = createContext();
+// export const ThemeContext = createContext();
 
 const Layout = ({ startingTheme, children }) => {
-  const [parentState, setParentState] = useState({
-    showSessions: true,
-    theme: startingTheme,
-  });
-  const { showSessions, theme } = parentState;
+  // const [parentState, setParentState] = useState({
+  //   showSessions: true,
+  //   theme: startingTheme,
+  // });
+  // const { showSessions, theme } = parentState;
 
-  const providerSharedState = { showSessions, theme, setParentState };
+  // const providerSharedState = { showSessions, theme, setParentState };
+
+  // const { theme } = useContext(ThemeContext);
 
   return (
-    <ThemeContext.Provider value={providerSharedState}>
-      <div
-        className={
-          theme === "light" ? "container-fluid light" : "container-fluid dark"
-        }
-      >
-        {children}
-      </div>
-    </ThemeContext.Provider>
+    <ThemeProvider startingTheme={startingTheme}>
+      <LayoutNoThemeProvider>{children}</LayoutNoThemeProvider>
+    </ThemeProvider>
+  );
+};
+
+const LayoutNoThemeProvider = ({ children }) => {
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <div
+      className={
+        theme === "light" ? "container-fluid light" : "container-fluid dark"
+      }
+    >
+      {children}
+    </div>
   );
 };
 
