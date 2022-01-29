@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "./App";
 
-const Header = ({ theme }) => {
+const Header = (/*{ theme } */) => {
+  const { theme } = useContext(ThemeContext);
+
   const textsColor = theme === "light" ? "" : "text-info";
   return (
     <div className="padT4 padB4">
