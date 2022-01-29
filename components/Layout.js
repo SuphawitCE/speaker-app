@@ -19,14 +19,6 @@ const Layout = ({ startingTheme, children }) => {
         }
       >
         {children}
-        {/* <Header
-        // theme={theme}
-        />
-        <Speakers
-        // theme={theme}
-        // showSessions={showSessions}
-        // setParentState={setParentState}
-        /> */}
       </div>
     </ThemeContext.Provider>
   );
