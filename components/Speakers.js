@@ -1,17 +1,13 @@
 import React, { useContext } from "react";
 import SpeakersList from "./SpeakersList";
 import SpeakersToolbar from "./SpeakersToolbar";
-import { ThemeContext } from "./App";
+import { ThemeContext } from "./Layout";
 
-const Speakers = (/*{ theme, showSessions, setParentState } */) => {
+const Speakers = () => {
   const { showSessions } = useContext(ThemeContext);
   return (
     <>
-      <SpeakersToolbar
-      // theme={theme}
-      // setParentState={setParentState}
-      // showSessions={showSessions}
-      />
+      <SpeakersToolbar />
       <SpeakersList showSessions={showSessions} />
     </>
   );

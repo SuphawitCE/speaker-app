@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "./App";
+import { ThemeContext } from "./Layout";
 
-const Header = (/*{ theme } */) => {
+const Header = () => {
   const { theme } = useContext(ThemeContext);
 
   const textsColor = theme === "light" ? "" : "text-info";

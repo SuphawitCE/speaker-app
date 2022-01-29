@@ -1,25 +1,19 @@
-import React, { createContext, useState } from "react";
 import Header from "./Header";
+import Layout from "./Layout";
 import Speakers from "./Speakers";
 
-export const ThemeContext = createContext();
+// export const ThemeContext = createContext();
 
 const App = () => {
-  const [parentState, setParentState] = useState({
-    showSessions: true,
-    theme: "light",
-  });
-  const { showSessions, theme } = parentState;
-
-  const providerSharedState = { showSessions, theme, setParentState };
-
+  // const [parentState, setParentState] = useState({
+  //   showSessions: true,
+  //   theme: "light",
+  // });
+  // const { showSessions, theme } = parentState;
+  // const providerSharedState = { showSessions, theme, setParentState };
   return (
-    <ThemeContext.Provider value={providerSharedState}>
-      <div
-        className={
-          theme === "light" ? "container-fluid light" : "container-fluid dark"
-        }
-      >
+    <Layout startingTheme="light">
+      <div>
         <Header
         // theme={theme}
         />
@@ -29,7 +23,7 @@ const App = () => {
         // setParentState={setParentState}
         />
       </div>
-    </ThemeContext.Provider>
+    </Layout>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "./App";
+import { ThemeContext } from "./Layout";
 
-const SpeakersToolbar = (/* { showSessions, theme, setParentState } */) => {
+const SpeakersToolbar = () => {
   const { showSessions, theme, setParentState } = useContext(ThemeContext);
 
   const handleSessionChange = (e) => {
