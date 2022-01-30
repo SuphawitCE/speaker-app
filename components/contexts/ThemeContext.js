@@ -5,28 +5,23 @@ export const ThemeContext = createContext();
 
 const ThemeProvider = ({ startingTheme, children }) => {
   //  Global state
-  const [parentState, setParentState] = useState({
-    showSessions: true,
-    // theme: startingTheme,
-    // Add state here
-  });
-  const {
-    showSessions,
-    //  theme
-  } = parentState;
+  // const [parentState, setParentState] = useState({
+  //   showSessions: true,
+  //   theme: startingTheme,
+  //  // Add state here
+  // });
+  // const {
+  //   showSessions,
+  //    theme
+  // } = parentState;
 
-  const {
-    theme,
-    setTheme,
-    //  setThemeState
-  } = useTheme(startingTheme);
+  const { theme, setTheme } = useTheme(startingTheme);
 
   const providerSharedState = {
-    showSessions,
+    // showSessions,
     theme,
     setTheme,
-    // setThemeState,
-    setParentState,
+    // setParentState,
   };
 
   return (
