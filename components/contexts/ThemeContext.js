@@ -15,12 +15,17 @@ const ThemeProvider = ({ startingTheme, children }) => {
     //  theme
   } = parentState;
 
-  const { theme, setThemeState } = useTheme(startingTheme);
+  const {
+    theme,
+    setTheme,
+    //  setThemeState
+  } = useTheme(startingTheme);
 
   const providerSharedState = {
     showSessions,
     theme,
-    setThemeState,
+    setTheme,
+    // setThemeState,
     setParentState,
   };
 

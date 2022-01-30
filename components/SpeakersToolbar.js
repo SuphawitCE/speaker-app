@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
-// import { ThemeContext } from "./Layout";
 import { ThemeContext } from "./contexts/ThemeContext";
 
 const SpeakersToolbar = () => {
   const { showSessions, setParentState } = useContext(ThemeContext);
 
-  const { theme, setThemeState } = useContext(ThemeContext);
+  const {
+    theme,
+    setTheme,
+    // setThemeState
+  } = useContext(ThemeContext);
 
   const handleSessionChange = (e) => {
     setParentState((prevState) => ({
@@ -15,11 +18,13 @@ const SpeakersToolbar = () => {
   };
 
   const handleThemeChange = (e) => {
+    setTheme(e.target.value);
+
     // setParentState
-    setThemeState((prevState) => ({
-      ...prevState,
-      theme: e.target.value,
-    }));
+    // setThemeState((prevState) => ({
+    //   ...prevState,
+    //   theme: e.target.value,
+    // }));
   };
 
   return (
