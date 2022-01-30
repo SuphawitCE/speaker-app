@@ -3,7 +3,9 @@ import React, { useContext } from "react";
 import { ThemeContext } from "./contexts/ThemeContext";
 
 const SpeakersToolbar = () => {
-  const { showSessions, theme, setParentState } = useContext(ThemeContext);
+  const { showSessions, setParentState } = useContext(ThemeContext);
+
+  const { theme, setThemeState } = useContext(ThemeContext);
 
   const handleSessionChange = (e) => {
     setParentState((prevState) => ({
@@ -13,7 +15,8 @@ const SpeakersToolbar = () => {
   };
 
   const handleThemeChange = (e) => {
-    setParentState((prevState) => ({
+    // setParentState
+    setThemeState((prevState) => ({
       ...prevState,
       theme: e.target.value,
     }));
