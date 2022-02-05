@@ -48,15 +48,16 @@ const SpeakersList = (/*{ showSessions } */) => {
             key={speaker.id}
             speaker={speaker}
             // showSessions={showSessions}
-            onFavoriteToggle={(doneCallback) => {
-              updateRecord(
-                {
-                  ...speaker,
-                  favorite: !speaker.favorite,
-                },
-                doneCallback
-              );
-            }}
+            // onFavoriteToggle={(doneCallback) => {
+            //   updateRecord(
+            //     {
+            //       ...speaker,
+            //       favorite: !speaker.favorite,
+            //     },
+            //     doneCallback
+            //   );
+            // }}
+            updateRecord={updateRecord}
           />
         );
       });
