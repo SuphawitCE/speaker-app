@@ -1,17 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
+import { SpeakerFilterContext } from "./contexts/SpeakerFilterContext";
+import { ThemeContext } from "./contexts/ThemeContext";
 
-const SpeakersToolbar = ({ showSessions, theme, setParentState }) => {
+const SpeakersToolbar = () => {
+  const { showSessions, eventYear, EVENT_YEAR, setSpeakerState, searchQuery } =
+    useContext(SpeakerFilterContext);
+
+  const { theme, setTheme } = useContext(ThemeContext);
+
   const handleSessionChange = (e) => {
-    setParentState((prevState) => ({
+    setSpeakerState((prevState) => ({
       ...prevState,
       showSessions: e.target.checked,
     }));
   };
 
   const handleThemeChange = (e) => {
-    setParentState((prevState) => ({
+    setTheme(e.target.value);
+  };
+
+  const handleSearchQueryChange = (e) => {
+    setSpeakerState((prevState) => ({
       ...prevState,
-      theme: e.target.value,
+      searchQuery: e.target.value,
+    }));
+  };
+
+  const handleEventYearChange = ({ currentTarget }) => {
+    setSpeakerState((prevState) => ({
+      ...prevState,
+      eventYear: currentTarget.value,
     }));
   };
 
@@ -41,6 +59,39 @@ const SpeakersToolbar = ({ showSessions, theme, setParentState }) => {
                 >
                   <option value="light">Light</option>
                   <option value="dark">Dark</option>
+                </select>
+              </label>
+            </li>
+            <li>
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search..."
+                  onChange={handleSearchQueryChange}
+                />
+                <div className="input-group-append">
+                  <button className="btn btn-secondary" type="button">
+                    <i className="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </li>
+            <li className="d-flex flex-column flex-md-row">
+              <strong>Year</strong>
+              <label className="dropmenu">
+                <select
+                  className="form-control"
+                  value={eventYear}
+                  onChange={handleEventYearChange}
+                >
+                  {EVENT_YEAR.map((year) => {
+                    return (
+                      <option value={year} key={year}>
+                        {year}
+                      </option>
+                    );
+                  })}
                 </select>
               </label>
             </li>
