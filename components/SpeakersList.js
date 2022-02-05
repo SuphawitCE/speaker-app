@@ -28,21 +28,21 @@ const SpeakersList = (/*{ showSessions } */) => {
   const searchRender = (speakersData) => {
     return speakersData
       .filter((speaker) => {
-        console.log("1: ", speaker);
+        // console.log("1: ", speaker);
         return (
           speaker.first.toLowerCase().includes(searchQuery) ||
           speaker.last.toLowerCase().includes(searchQuery)
         );
       })
       .filter((speaker) => {
-        console.log("2: ", speaker);
+        // console.log("2: ", speaker);
         return speaker.sessions.find((session) => {
-          console.log("3: ", session);
+          // console.log("3: ", session);
           return session.eventYear === eventYear;
         });
       })
       .map((speaker) => {
-        console.log("4: ", speaker);
+        // console.log("4: ", speaker);
         return (
           <Speaker
             key={speaker.id}

@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
 import useSpeakerFilter from "../hooks/useSpeakerFilter";
+
 const SpeakerFilterContext = createContext();
 
 const SpeakerFilterProvider = ({
@@ -9,22 +10,24 @@ const SpeakerFilterProvider = ({
 }) => {
   const {
     showSessions,
-    setShowSessions,
+    // setShowSessions,
     eventYear,
-    setEventYear,
+    // setEventYear,
     searchQuery,
-    setSearchQuery,
+    // setSearchQuery,
     EVENT_YEAR,
+    setSpeakerState,
   } = useSpeakerFilter(startingShowSessions, startingEventYear);
 
   const providerSharedState = {
     showSessions,
-    setShowSessions,
+    // setShowSessions,
     eventYear,
-    setEventYear,
+    // setEventYear,
     searchQuery,
-    setSearchQuery,
+    // setSearchQuery,
     EVENT_YEAR,
+    setSpeakerState,
   };
 
   return (

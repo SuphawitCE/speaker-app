@@ -7,11 +7,13 @@ const SpeakersToolbar = () => {
 
   const {
     showSessions,
-    setShowSessions,
+    // setShowSessions,
     eventYear,
-    setEventYear,
-    setSearchQuery,
+    // setEventYear,
+    // setSearchQuery,
     EVENT_YEAR,
+    setSpeakerState,
+    searchQuery,
   } = useContext(SpeakerFilterContext);
 
   const {
@@ -25,7 +27,12 @@ const SpeakersToolbar = () => {
     //   ...prevState,
     //   showSessions: e.target.checked,
     // }));
-    setShowSessions(e.target.checked);
+
+    // setShowSessions(e.target.checked);
+    setSpeakerState((prevState) => ({
+      ...prevState,
+      showSessions: e.target.checked,
+    }));
   };
 
   const handleThemeChange = (e) => {
@@ -39,11 +46,21 @@ const SpeakersToolbar = () => {
   };
 
   const handleSearchQueryChange = (e) => {
-    setSearchQuery(e.target.value);
+    // setSearchQuery(e.target.value);
+
+    setSpeakerState((prevState) => ({
+      ...prevState,
+      searchQuery: e.target.value,
+    }));
   };
 
   const handleEventYearChange = ({ currentTarget }) => {
-    setEventYear(currentTarget.value);
+    // setEventYear(currentTarget.value);
+
+    setSpeakerState((prevState) => ({
+      ...prevState,
+      eventYear: currentTarget.value,
+    }));
   };
 
   return (
