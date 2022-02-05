@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 
 const useSpeakerFilter = (startingShowSessions, startingEventYear) => {
-  // const [showSessions, setShowSessions] = useState(startingShowSessions);
-  // const [eventYear, setEventYear] = useState(startingEventYear);
-  // const [searchQuery, setSearchQuery] = useState("");
-
   const [SpeakerState, setSpeakerState] = useState({
     showSessions: startingShowSessions,
     eventYear: startingEventYear,
@@ -34,14 +30,6 @@ const useSpeakerFilter = (startingShowSessions, startingEventYear) => {
     searchQuery,
     setSpeakerState,
     EVENT_YEAR,
-
-    // showSessions,
-    // setShowSessions,
-    // eventYear,
-    // setEventYear,
-    // searchQuery,
-    // setSearchQuery,
-    // EVENT_YEAR,
   };
 
   return providerValue;

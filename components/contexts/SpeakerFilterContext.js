@@ -8,24 +8,13 @@ const SpeakerFilterProvider = ({
   startingShowSessions = false,
   startingEventYear = "2019",
 }) => {
-  const {
-    showSessions,
-    // setShowSessions,
-    eventYear,
-    // setEventYear,
-    searchQuery,
-    // setSearchQuery,
-    EVENT_YEAR,
-    setSpeakerState,
-  } = useSpeakerFilter(startingShowSessions, startingEventYear);
+  const { showSessions, eventYear, searchQuery, EVENT_YEAR, setSpeakerState } =
+    useSpeakerFilter(startingShowSessions, startingEventYear);
 
   const providerSharedState = {
     showSessions,
-    // setShowSessions,
     eventYear,
-    // setEventYear,
     searchQuery,
-    // setSearchQuery,
     EVENT_YEAR,
     setSpeakerState,
   };

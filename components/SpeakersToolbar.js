@@ -3,32 +3,12 @@ import { SpeakerFilterContext } from "./contexts/SpeakerFilterContext";
 import { ThemeContext } from "./contexts/ThemeContext";
 
 const SpeakersToolbar = () => {
-  // const { showSessions, setParentState } = useContext(ThemeContext);
+  const { showSessions, eventYear, EVENT_YEAR, setSpeakerState, searchQuery } =
+    useContext(SpeakerFilterContext);
 
-  const {
-    showSessions,
-    // setShowSessions,
-    eventYear,
-    // setEventYear,
-    // setSearchQuery,
-    EVENT_YEAR,
-    setSpeakerState,
-    searchQuery,
-  } = useContext(SpeakerFilterContext);
-
-  const {
-    theme,
-    setTheme,
-    // setThemeState
-  } = useContext(ThemeContext);
+  const { theme, setTheme } = useContext(ThemeContext);
 
   const handleSessionChange = (e) => {
-    // setParentState((prevState) => ({
-    //   ...prevState,
-    //   showSessions: e.target.checked,
-    // }));
-
-    // setShowSessions(e.target.checked);
     setSpeakerState((prevState) => ({
       ...prevState,
       showSessions: e.target.checked,
@@ -37,17 +17,9 @@ const SpeakersToolbar = () => {
 
   const handleThemeChange = (e) => {
     setTheme(e.target.value);
-
-    // setParentState
-    // setThemeState((prevState) => ({
-    //   ...prevState,
-    //   theme: e.target.value,
-    // }));
   };
 
   const handleSearchQueryChange = (e) => {
-    // setSearchQuery(e.target.value);
-
     setSpeakerState((prevState) => ({
       ...prevState,
       searchQuery: e.target.value,
@@ -55,8 +27,6 @@ const SpeakersToolbar = () => {
   };
 
   const handleEventYearChange = ({ currentTarget }) => {
-    // setEventYear(currentTarget.value);
-
     setSpeakerState((prevState) => ({
       ...prevState,
       eventYear: currentTarget.value,

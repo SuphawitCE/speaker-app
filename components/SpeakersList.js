@@ -70,39 +70,7 @@ const SpeakersList = (/*{ showSessions } */) => {
         className="speakerslist-placeholder"
         ready={requestStatus === REQUEST_STATUS.SUCCESS}
       >
-        <div className="row">
-          {/* {speakersData
-            .filter((speaker) => {
-              return (
-                speaker.first.toLowerCase().includes(searchQuery) ||
-                speaker.last.toLowerCase().includes(searchQuery)
-              );
-            })
-            .filter((speaker) => {
-              return speaker.sessions.find((session) => {
-                return session.eventYear === eventYear;
-              });
-            })
-            .map((speaker) => {
-              return (
-                <Speaker
-                  key={speaker.id}
-                  speaker={speaker}
-                  // showSessions={showSessions}
-                  onFavoriteToggle={(doneCallback) => {
-                    updateRecord(
-                      {
-                        ...speaker,
-                        favorite: !speaker.favorite,
-                      },
-                      doneCallback
-                    );
-                  }}
-                />
-              );
-            })} */}
-          {searchRender(speakersData)}
-        </div>
+        <div className="row">{searchRender(speakersData)}</div>
       </ReactPlaceholder>
     </div>
   );

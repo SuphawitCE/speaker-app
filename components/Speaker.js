@@ -27,24 +27,7 @@ const Sessions = ({ sessions }) => {
         );
       });
 
-  return (
-    <div className="sessionBox card h-250">
-      {/* <Session {...sessions[0]} /> */}
-      {/* {sessions
-        .filter((session) => {
-          return session.eventYear === eventYear;
-        })
-        .map((session) => {
-          return (
-            <div className="session w-100" key={session.id}>
-              <Session {...session} />
-            </div>
-          );
-        })} */}
-
-      {renderSession(sessions)}
-    </div>
-  );
+  return <div className="sessionBox card h-250">{renderSession(sessions)}</div>;
 };
 
 const SpeakerImage = ({ id, first, last }) => {
