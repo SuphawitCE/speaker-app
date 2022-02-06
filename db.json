@@ -1,13 +1,45 @@
 {
   "speakers": [
     {
+      "id": "47345",
+      "first": "aaa",
+      "last": "www",
+      "bio": "Bio not availiable",
+      "sessions": [
+        {
+          "id": "9454602",
+          "title": "New Session for aaa",
+          "room": {
+            "name": "Main Townhall"
+          },
+          "eventYear": "2019"
+        }
+      ]
+    },
+    {
+      "id": "47344",
+      "first": "aaa",
+      "last": "bb",
+      "bio": "Bio not availiable",
+      "sessions": [
+        {
+          "id": "1979924",
+          "title": "New Session for aaa",
+          "room": {
+            "name": "Main Townhall"
+          },
+          "eventYear": "2019"
+        }
+      ]
+    },
+    {
       "id": "1269",
       "first": "Arun",
       "last": "Gupta",
       "company": "Amazon",
       "bio": "Arun Gupta is a Principal Open Source Technologist at Amazon Web Services. ",
       "twitterHandle": "arungupta",
-      "favorite": true,
+      "favorite": false,
       "sessions": [
         {
           "id": "32",
@@ -261,7 +293,7 @@
       "company": "Eventuate, Inc",
       "bio": "Founder of Eventuate, Author of POJOs in Action, creator of the original Cloud Foundry",
       "twitterHandle": "crichardson",
-      "favorite": false,
+      "favorite": true,
       "sessions": [
         {
           "id": "1011",

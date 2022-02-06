@@ -15,26 +15,11 @@ export default async function handler(req, res) {
   const recordFromBody = req?.body;
   const jsonFile = path.resolve("./", "db.json");
 
-  switch (method) {
-    case "POST":
-      await postMethod();
-      break;
-    case "PUT":
-      await putMethod();
-      break;
-    case "DELETE":
-      await deletemethod();
-      break;
-    default:
-      res.status(501).send(`Method ${method} not implemented`);
-      console.log(`Method ${method} not implemented`);
-  }
-
   // async function putMethod()
   const putMethod = async () => {
     try {
       const readFileData = await readFile(jsonFile);
-      await delay(1000);
+      await delay(700);
       const speakers = JSON.parse(readFileData).speakers;
       // if (speakers) {
       //   res.setHeader("Content-Type", "application/json");
@@ -70,7 +55,7 @@ export default async function handler(req, res) {
   const deleteMethod = async () => {
     try {
       const readFileData = await readFile(jsonFile);
-      await delay(1000);
+      await delay(700);
       const speakers = JSON.parse(readFileData).speakers;
 
       if (!speakers) {
@@ -105,7 +90,7 @@ export default async function handler(req, res) {
   const postMethod = async () => {
     try {
       const readFileData = await readFile(jsonFile);
-      await delay(1000);
+      await delay(700);
       const speakers = JSON.parse(readFileData).speakers;
 
       if (!speakers) {
@@ -138,4 +123,19 @@ export default async function handler(req, res) {
       res.status(404).send("File not found on server");
     }
   };
+
+  switch (method) {
+    case "POST":
+      await postMethod();
+      break;
+    case "PUT":
+      await putMethod();
+      break;
+    case "DELETE":
+      await deleteMethod();
+      break;
+    default:
+      res.status(501).send(`Method ${method} not implemented`);
+      console.log(`Method ${method} not implemented`);
+  }
 }

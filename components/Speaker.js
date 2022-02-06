@@ -34,6 +34,20 @@ const Sessions = (/* { sessions } */) => {
   return <div className="sessionBox card h-250">{renderSession(sessions)}</div>;
 };
 
+const ImageWithFallBack = ({ src, ...props }) => {
+  const [error, setError] = useState(false);
+  const [imgSrc, setImgSrc] = useState(src);
+
+  const onError = () => {
+    if (!error) {
+      setImgSrc("/images/speaker-99999.jpg");
+      setError(true);
+    }
+  };
+
+  return <img src={imgSrc} {...props} onError={onError} />;
+};
+
 const SpeakerImage = (/* { id, first, last } */) => {
   // const speakerObj = useContext(SpeakerContext);
   // const { speaker } = speakerObj;
@@ -45,7 +59,7 @@ const SpeakerImage = (/* { id, first, last } */) => {
 
   return (
     <div className="speaker-img d-flex flex-row justify-content-center align-items-center h-300">
-      <img
+      {/* <img
         className="contain-fit"
         // src={`/images/speaker-${id}.jpg`}
         src={
@@ -53,6 +67,12 @@ const SpeakerImage = (/* { id, first, last } */) => {
             ? "/images/dummy-speaker-image.jpg"
             : `/images/speaker-${id}.jpg`
         }
+        width="300"
+        alt={`${first} ${last}`}
+      /> */}
+      <ImageWithFallBack
+        className="contain-fit"
+        src={`/images/speaker-${id}.jpg`}
         width="300"
         alt={`${first} ${last}`}
       />

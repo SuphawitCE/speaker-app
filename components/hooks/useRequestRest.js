@@ -32,8 +32,13 @@ const useRequestRest = () => {
         setLocal((prevState) => ({
           ...prevState,
           requestStatus: REQUEST_STATUS.SUCCESS,
-          data: res.data, // not sure works
+          data: res.data,
         }));
+
+        // setLocal((prevState) => ({
+        //   ...prevState,
+        //   data: res.data,
+        // }));
         console.log("REST DATA: ", data);
       } catch (e) {
         setLocal((prevState) => ({
