@@ -11,6 +11,8 @@ const SpeakersList = (/*{ showSessions } */) => {
     requestStatus,
     error,
     updateRecord,
+    insertRecord,
+    deleteRecord,
   } = useRequestDelay(1500, data);
 
   const { searchQuery, eventYear } = useContext(SpeakerFilterContext);
@@ -58,6 +60,8 @@ const SpeakersList = (/*{ showSessions } */) => {
             //   );
             // }}
             updateRecord={updateRecord}
+            insertRecord={insertRecord}
+            deleteRecord={deleteRecord}
           />
         );
       });

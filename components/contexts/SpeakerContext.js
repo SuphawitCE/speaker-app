@@ -2,10 +2,18 @@ import { createContext } from "react";
 
 const SpeakerContext = createContext();
 
-const SpeakerProvider = ({ children, speaker, updateRecord }) => {
+const SpeakerProvider = ({
+  children,
+  speaker,
+  updateRecord,
+  insertRecord,
+  deleteRecord,
+}) => {
   const providerSharedState = {
     speaker,
     updateRecord,
+    insertRecord,
+    deleteRecord,
   };
 
   return (
