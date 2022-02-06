@@ -47,7 +47,12 @@ const SpeakerImage = (/* { id, first, last } */) => {
     <div className="speaker-img d-flex flex-row justify-content-center align-items-center h-300">
       <img
         className="contain-fit"
-        src={`/images/speaker-${id}.jpg`}
+        // src={`/images/speaker-${id}.jpg`}
+        src={
+          id > 99999
+            ? "/images/dummy-speaker-image.jpg"
+            : `/images/speaker-${id}.jpg`
+        }
         width="300"
         alt={`${first} ${last}`}
       />

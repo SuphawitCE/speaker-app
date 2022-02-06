@@ -5,8 +5,8 @@ const SpeakerAdd = ({ eventYear, insertRecord }) => {
     e.preventDefault();
     const firstLast = window.prompt("Enter first and last name: ", "");
     const firstLastValue = firstLast.split(" ");
-    const generateUniqueId =
-      Date.now().toString(36) + Math.random().toString(36).substr(2);
+    const generateUniqueId = String(Math.floor(Math.random() * 9999999) + 1);
+    // Date.now().toString(36) + Math.random().toString(36).substr(2);
 
     const insertValueRecord = {
       id: generateUniqueId,
