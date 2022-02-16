@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import Speaker from "./Speaker";
 import ReactPlaceholder from "react-placeholder";
-import useRequestDelay, { REQUEST_STATUS } from "./hooks/useRequestDelay";
+// import useRequestDelay, { REQUEST_STATUS } from "./hooks/useRequestDelay";
+import useRequestRest, { REQUEST_STATUS } from "./hooks/useRequestRest";
 import { data } from "../SpeakerData";
 import { SpeakerFilterContext } from "./contexts/SpeakerFilterContext";
+import SpeakerAdd from "./SpeakerAdd";
 
 const SpeakersList = (/*{ showSessions } */) => {
   const {
@@ -11,7 +13,9 @@ const SpeakersList = (/*{ showSessions } */) => {
     requestStatus,
     error,
     updateRecord,
-  } = useRequestDelay(1500, data);
+    insertRecord,
+    deleteRecord,
+  } = useRequestRest();
 
   const { searchQuery, eventYear } = useContext(SpeakerFilterContext);
 
@@ -48,15 +52,18 @@ const SpeakersList = (/*{ showSessions } */) => {
             key={speaker.id}
             speaker={speaker}
             // showSessions={showSessions}
-            onFavoriteToggle={(doneCallback) => {
-              updateRecord(
-                {
-                  ...speaker,
-                  favorite: !speaker.favorite,
-                },
-                doneCallback
-              );
-            }}
+            // onFavoriteToggle={(doneCallback) => {
+            //   updateRecord(
+            //     {
+            //       ...speaker,
+            //       favorite: !speaker.favorite,
+            //     },
+            //     doneCallback
+            //   );
+            // }}
+            updateRecord={updateRecord}
+            insertRecord={insertRecord}
+            deleteRecord={deleteRecord}
           />
         );
       });
@@ -70,6 +77,7 @@ const SpeakersList = (/*{ showSessions } */) => {
         className="speakerslist-placeholder"
         ready={requestStatus === REQUEST_STATUS.SUCCESS}
       >
+        <SpeakerAdd eventYear={eventYear} insertRecord={insertRecord} />
         <div className="row">{searchRender(speakersData)}</div>
       </ReactPlaceholder>
     </div>

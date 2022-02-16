@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 export const REQUEST_STATUS = {
@@ -6,9 +7,12 @@ export const REQUEST_STATUS = {
   FAILURE: "failure",
 };
 
-const useRequestDelay = (delayTime = 1000, initialData = []) => {
+const restURL = "api/speakers";
+
+const useRequestRest = () => {
   const [local, setLocal] = useState({
-    data: initialData,
+    // data: initialData,
+    data: [],
     error: "",
     requestStatus: REQUEST_STATUS.LOADING,
   });
@@ -20,7 +24,7 @@ const useRequestDelay = (delayTime = 1000, initialData = []) => {
   useEffect(() => {
     const callDelay = async () => {
       try {
-        await delay(delayTime);
+        const res = await axios(restURL);
 
         // if want to test error fetching data uncomment throw
         // throw "Error happen in useEffect block";
@@ -28,7 +32,14 @@ const useRequestDelay = (delayTime = 1000, initialData = []) => {
         setLocal((prevState) => ({
           ...prevState,
           requestStatus: REQUEST_STATUS.SUCCESS,
+          data: res.data,
         }));
+
+        // setLocal((prevState) => ({
+        //   ...prevState,
+        //   data: res.data,
+        // }));
+        console.log("REST DATA: ", data);
       } catch (e) {
         setLocal((prevState) => ({
           ...prevState,
@@ -52,7 +63,8 @@ const useRequestDelay = (delayTime = 1000, initialData = []) => {
           data: newRecords,
         }));
 
-        await delay(delayTime);
+        // await delay(delayTime);
+        await axios.put(`${restURL}/${record.id}`, record);
 
         if (doneCallback) doneCallback();
       } catch (e) {
@@ -80,7 +92,8 @@ const useRequestDelay = (delayTime = 1000, initialData = []) => {
           data: newRecords,
         }));
 
-        await delay(delayTime);
+        // await delay(delayTime);
+        await axios.post(`${restURL}/99999`, record);
 
         if (doneCallback) doneCallback();
       } catch (e) {
@@ -108,7 +121,8 @@ const useRequestDelay = (delayTime = 1000, initialData = []) => {
           data: newRecords,
         }));
 
-        await delay(delayTime);
+        // await delay(delayTime);
+        await axios.delete(`${restURL}/${record.id}`, record);
 
         if (doneCallback) doneCallback();
       } catch (e) {
@@ -135,4 +149,4 @@ const useRequestDelay = (delayTime = 1000, initialData = []) => {
   };
 };
 
-export default useRequestDelay;
+export default useRequestRest;

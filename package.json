@@ -13,9 +13,13 @@
   "author": "SuphawitCE",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.25.0",
     "next": "^12.0.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-placeholder": "^4.1.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.5"
   }
 }

@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import { SpeakerFilterContext } from "./contexts/SpeakerFilterContext";
+import { SpeakerProvider, SpeakerContext } from "./contexts/SpeakerContext";
+import SpeakerDelete from "./SpeakerDelete";
 
 const Session = ({ title, room }) => {
   return (
@@ -9,8 +11,10 @@ const Session = ({ title, room }) => {
   );
 };
 
-const Sessions = ({ sessions }) => {
+const Sessions = (/* { sessions } */) => {
   const { eventYear } = useContext(SpeakerFilterContext);
+  const { speaker } = useContext(SpeakerContext);
+  const sessions = speaker.sessions;
 
   const renderSession = (sessions) =>
     sessions
@@ -30,10 +34,43 @@ const Sessions = ({ sessions }) => {
   return <div className="sessionBox card h-250">{renderSession(sessions)}</div>;
 };
 
-const SpeakerImage = ({ id, first, last }) => {
+const ImageWithFallBack = ({ src, ...props }) => {
+  const [error, setError] = useState(false);
+  const [imgSrc, setImgSrc] = useState(src);
+
+  const onError = () => {
+    if (!error) {
+      setImgSrc("/images/speaker-99999.jpg");
+      setError(true);
+    }
+  };
+
+  return <img src={imgSrc} {...props} onError={onError} />;
+};
+
+const SpeakerImage = (/* { id, first, last } */) => {
+  // const speakerObj = useContext(SpeakerContext);
+  // const { speaker } = speakerObj;
+  // const { id, first, last } = speaker;
+
+  const {
+    speaker: { id, first, last },
+  } = useContext(SpeakerContext);
+
   return (
     <div className="speaker-img d-flex flex-row justify-content-center align-items-center h-300">
-      <img
+      {/* <img
+        className="contain-fit"
+        // src={`/images/speaker-${id}.jpg`}
+        src={
+          id > 99999
+            ? "/images/dummy-speaker-image.jpg"
+            : `/images/speaker-${id}.jpg`
+        }
+        width="300"
+        alt={`${first} ${last}`}
+      /> */}
+      <ImageWithFallBack
         className="contain-fit"
         src={`/images/speaker-${id}.jpg`}
         width="300"
@@ -43,7 +80,9 @@ const SpeakerImage = ({ id, first, last }) => {
   );
 };
 
-const SpeakerFavorite = ({ favorite, onFavoriteToggle }) => {
+const SpeakerFavorite = (/* { favorite, onFavoriteToggle } */) => {
+  const { speaker, updateRecord } = useContext(SpeakerContext);
+
   const [local, setLocal] = useState({
     inTransition: false,
   });
@@ -69,11 +108,20 @@ const SpeakerFavorite = ({ favorite, onFavoriteToggle }) => {
             ...prevState,
             inTransition: true,
           }));
-          return onFavoriteToggle(doneCallback);
+          // return onFavoriteToggle(doneCallback);
+
+          const recordValue = {
+            ...speaker,
+            favorite: !speaker.favorite,
+          };
+
+          updateRecord(recordValue, doneCallback);
         }}
       >
         <i
-          className={favorite ? "fa fa-star orange" : "fa fa-star-o orange"}
+          className={
+            speaker.favorite ? "fa fa-star orange" : "fa fa-star-o orange"
+          }
         ></i>{" "}
         Favorite{" "}
         {inTransition ? <span className="fas fa-circle-notch fa-spin" /> : null}
@@ -82,7 +130,7 @@ const SpeakerFavorite = ({ favorite, onFavoriteToggle }) => {
   );
 };
 
-const SpeakerDemographics = ({
+const SpeakerDemographics = (/* {
   first,
   last,
   bio,
@@ -90,7 +138,10 @@ const SpeakerDemographics = ({
   twitterHandle,
   favorite,
   onFavoriteToggle,
-}) => {
+} */) => {
+  const { speaker } = useContext(SpeakerContext);
+  const { first, last, bio, company, twitterHandle, favorite } = speaker;
+
   return (
     <div className="speaker-info">
       <div className="d-flex justify-content-between mb-3">
@@ -99,8 +150,8 @@ const SpeakerDemographics = ({
         </h3>
       </div>
       <SpeakerFavorite
-        favorite={favorite}
-        onFavoriteToggle={onFavoriteToggle}
+      // favorite={favorite}
+      // onFavoriteToggle={onFavoriteToggle}
       />
       <div>
         <p className="card-description">{bio}</p>
@@ -119,22 +170,38 @@ const SpeakerDemographics = ({
   );
 };
 
-const Speaker = ({ speaker, /* showSessions,*/ onFavoriteToggle }) => {
+const Speaker = ({
+  speaker,
+  updateRecord /* showSessions, onFavoriteToggle */,
+  insertRecord,
+  deleteRecord,
+}) => {
   const { showSessions } = useContext(SpeakerFilterContext);
 
-  const { id, first, last, sessions } = speaker;
+  // const { id, first, last, sessions } = speaker;
 
   return (
-    <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-sm-12 col-xs-12">
-      <div className="card card-height p-4 mt-4">
-        {/* picture */}
-        <SpeakerImage id={id} first={first} last={last} />
-        {/* speaker info */}
-        <SpeakerDemographics {...speaker} onFavoriteToggle={onFavoriteToggle} />
-        {/* session */}
+    <SpeakerProvider
+      speaker={speaker}
+      updateRecord={updateRecord}
+      insertRecord={insertRecord}
+      deleteRecord={deleteRecord}
+    >
+      <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-sm-12 col-xs-12">
+        <div className="card card-height p-4 mt-4">
+          {/* picture */}
+          <SpeakerImage /* id={id} first={first} last={last} */ />
+          {/* speaker info */}
+          <SpeakerDemographics
+          // {...speaker}
+          // onFavoriteToggle={onFavoriteToggle}
+          />
+          {/* session */}
+        </div>
+        {showSessions === true ? <Sessions /* sessions={sessions} */ /> : null}
+        <SpeakerDelete />
       </div>
-      {showSessions === true ? <Sessions sessions={sessions} /> : null}
-    </div>
+    </SpeakerProvider>
   );
 };
 
