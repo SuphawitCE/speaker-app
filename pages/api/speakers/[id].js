@@ -113,7 +113,7 @@ export default async function handler(req, res) {
 
         res.setHeader("Content-Type", "application/json");
         res.status(200).send(JSON.stringify(newSpeakerRec, null, 2));
-        console.log(`POST /api/speakers/${id} status: 200`);
+        console.log(`POST /api/speakers/${newSpeakerRec.id} status: 200`);
       }
     } catch (e) {
       res

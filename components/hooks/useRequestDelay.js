@@ -99,7 +99,7 @@ const useRequestDelay = (delayTime = 1000, initialData = []) => {
 
   const deleteRecord = (record, doneCallback) => {
     const originalRecords = [...data];
-    const newRecords = data.filter((rec) => rec.id !== record.id);
+    const newRecords = data.filter((rec) => rec.id != record.id);
 
     const delayFunction = async () => {
       try {

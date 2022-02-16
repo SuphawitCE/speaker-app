@@ -83,17 +83,21 @@ const useRequestRest = () => {
 
   const insertRecord = (record, doneCallback) => {
     const originalRecords = [...data];
-    const newRecords = [record, ...data];
+    // const newRecords = [record, ...data];
 
     const delayFunction = async () => {
       try {
+        const response = await axios.post(`${restURL}/${record.id}`, record);
+        const { data: insertRecord } = response;
+        const newRecords = [insertRecord, ...data];
+
         setLocal((prevState) => ({
           ...prevState,
           data: newRecords,
         }));
 
         // await delay(delayTime);
-        await axios.post(`${restURL}/99999`, record);
+        // await axios.post(`${restURL}/99999`, record);
 
         if (doneCallback) doneCallback();
       } catch (e) {
@@ -112,7 +116,7 @@ const useRequestRest = () => {
 
   const deleteRecord = (record, doneCallback) => {
     const originalRecords = [...data];
-    const newRecords = data.filter((rec) => rec.id !== record.id);
+    const newRecords = data.filter((rec) => rec.id != record.id);
 
     const delayFunction = async () => {
       try {
