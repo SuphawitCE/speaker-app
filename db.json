@@ -1,30 +1,14 @@
 {
   "speakers": [
     {
-      "id": "47345",
-      "first": "aaa",
-      "last": "www",
-      "bio": "Bio not availiable",
-      "sessions": [
-        {
-          "id": "9454602",
-          "title": "New Session for aaa",
-          "room": {
-            "name": "Main Townhall"
-          },
-          "eventYear": "2019"
-        }
-      ]
-    },
-    {
       "id": "47344",
-      "first": "aaa",
-      "last": "bb",
+      "first": "Testing",
+      "last": "CreateSpeaker",
       "bio": "Bio not availiable",
       "sessions": [
         {
-          "id": "1979924",
-          "title": "New Session for aaa",
+          "id": "771675",
+          "title": "New Session for Testing",
           "room": {
             "name": "Main Townhall"
           },
