@@ -2,13 +2,13 @@
   "speakers": [
     {
       "id": "47344",
-      "first": "Testing",
-      "last": "CreateSpeaker",
+      "first": "test",
+      "last": "aaaa",
       "bio": "Bio not availiable",
       "sessions": [
         {
-          "id": "771675",
-          "title": "New Session for Testing",
+          "id": "61009",
+          "title": "New Session for test",
           "room": {
             "name": "Main Townhall"
           },

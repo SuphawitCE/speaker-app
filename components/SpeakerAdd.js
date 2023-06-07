@@ -5,11 +5,11 @@ const SpeakerAdd = ({ eventYear, insertRecord }) => {
     e.preventDefault();
     const firstLast = window.prompt("Enter first and last name: ", "");
     const firstLastValue = firstLast.split(" ");
-    const generateUniqueId = String(Math.floor(Math.random() * 9999999) + 1);
+    const generateUniqueId = String(Math.floor(Math.random() * 99999) + 1);
     // Date.now().toString(36) + Math.random().toString(36).substr(2);
 
     const insertValueRecord = {
-      id: generateUniqueId,
+      id: "99999",
       first: firstLastValue[0],
       last: firstLastValue[1],
       bio: "Bio not availiable",
